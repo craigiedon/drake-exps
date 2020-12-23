@@ -1,53 +1,49 @@
-digraph MultibodyPlant {
-label="plant";
-rankdir=BT;
-labelloc=t;
-subgraph cluster0 {
- label="WorldModelInstance";
- body0 [label="WorldBody"];
+digraph _44354992 {
+rankdir=LR
+subgraph cluster44354992diagram {
+color=black
+concentrate=true
+label="pick_and_place";
+subgraph cluster44354992inputports {
+rank=same
+color=lightgrey
+style=filled
+label="input ports"
 }
-subgraph cluster1 {
- label="DefaultModelInstance";
+subgraph cluster44354992outputports {
+rank=same
+color=lightgrey
+style=filled
+label="output ports"
 }
-subgraph cluster2 {
- label="panda";
- body1 [label="panda_link0"];
- body2 [label="panda_link1"];
- body3 [label="panda_link2"];
- body4 [label="panda_link3"];
- body5 [label="panda_link4"];
- body6 [label="panda_link5"];
- body7 [label="panda_link6"];
- body8 [label="panda_link7"];
- body9 [label="panda_link8"];
- body10 [label="panda_hand"];
- body11 [label="panda_leftfinger"];
- body12 [label="panda_rightfinger"];
+subgraph cluster44354992subsystems {
+color=white
+label=""
+44536688 [shape=record, label="plant|{{<u0>geometry_query|<u1>WorldModelInstance_actuation|<u2>DefaultModelInstance_actuation|<u3>panda_actuation|<u4>brick_actuation|<u5>bin_1_actuation|<u6>bin_2_actuation|<u7>applied_generalized_force|<u8>applied_spatial_force} | {<y0>geometry_pose|<y1>continuous_state|<y2>body_poses|<y3>spatial_velocities|<y4>spatial_accelerations|<y5>generalized_acceleration|<y6>WorldModelInstance_continuous_state|<y7>WorldModelInstance_generalized_acceleration|<y8>DefaultModelInstance_continuous_state|<y9>DefaultModelInstance_generalized_acceleration|<y10>panda_continuous_state|<y11>panda_generalized_acceleration|<y12>brick_continuous_state|<y13>brick_generalized_acceleration|<y14>bin_1_continuous_state|<y15>bin_1_generalized_acceleration|<y16>bin_2_continuous_state|<y17>bin_2_generalized_acceleration|<y18>WorldModelInstance_generalized_contact_forces|<y19>DefaultModelInstance_generalized_contact_forces|<y20>panda_generalized_contact_forces|<y21>brick_generalized_contact_forces|<y22>bin_1_generalized_contact_forces|<y23>bin_2_generalized_contact_forces|<y24>reaction_forces|<y25>contact_results}}"];
+44545104 [shape=record, label="scene_graph|{{<u0>plant_pose} | {<y0>lcm_visualization|<y1>query}}"];
+50967264 [shape=record, label="drake/geometry/DrakeVisualizer@000000000309b2e0|{{<u0>query_object} | {}}"];
+44401600 [shape=record, label="s_interp|{{<u0>position} | {<y0>state}}"];
+43967968 [shape=record, label="Inverse Kinematics|{{<u0>X_WE_desired} | {<y0>joint_positions}}"];
+49778560 [shape=record, label="RB Conv|{{} | {<y0>y0}}"];
+45109200 [shape=record, label="Diff Arm Demux|{{<u0>u0} | {<y0>y0|<y1>y1}}"];
+44691968 [shape=record, label="inv_d|{{<u0>estimated_state|<u1>desired_state} | {<y0>force}}"];
+50549088 [shape=record, label="__main__.GripperTrajectoriesToPosition@0000000003035160|{{} | {<y0>finger_position}}"];
+47281040 [shape=record, label="drake/systems/StateInterpolatorWithDiscreteDerivative@0000000002d17390|{{<u0>position} | {<y0>state}}"];
+49908240 [shape=record, label="Arm-Hand Mux|{{<u0>u0|<u1>u1} | {<y0>y0}}"];
+46307792 [shape=record, label="drake/systems/SignalLogger@0000000002c299d0|{{<u0>data} | {}}"];
+49778560:y0 -> 43967968:u0;
+45109200:y0 -> 44401600:u0;
+44545104:y1 -> 44536688:u0;
+44691968:y0 -> 44536688:u3;
+44536688:y0 -> 44545104:u0;
+44536688:y10 -> 44691968:u0;
+49908240:y0 -> 44691968:u1;
+43967968:y0 -> 45109200:u0;
+43967968:y0 -> 46307792:u0;
+50549088:y0 -> 47281040:u0;
+44401600:y0 -> 49908240:u0;
+47281040:y0 -> 49908240:u1;
+44545104:y1 -> 50967264:u0;
 }
-subgraph cluster3 {
- label="brick";
- body13 [label="base_link"];
 }
-subgraph cluster4 {
- label="bin_1";
- body14 [label="bin_base"];
-}
-subgraph cluster5 {
- label="bin_2";
- body15 [label="bin_base"];
-}
-body2 -> body1 [label="panda_joint1 [revolute]"];
-body3 -> body2 [label="panda_joint2 [revolute]"];
-body4 -> body3 [label="panda_joint3 [revolute]"];
-body5 -> body4 [label="panda_joint4 [revolute]"];
-body6 -> body5 [label="panda_joint5 [revolute]"];
-body7 -> body6 [label="panda_joint6 [revolute]"];
-body8 -> body7 [label="panda_joint7 [revolute]"];
-body9 -> body8 [label="panda_joint8 [weld]"];
-body10 -> body9 [label="panda_hand_joint [weld]"];
-body11 -> body10 [label="panda_finger_joint1 [prismatic]"];
-body12 -> body10 [label="panda_finger_joint2 [prismatic]"];
-body1 -> body0 [label="WorldBody_welds_to_panda_link0 [weld]"];
-body14 -> body0 [label="WorldBody_welds_to_bin_base [weld]"];
-body15 -> body0 [label="WorldBody_welds_to_bin_base [weld]"];
 }

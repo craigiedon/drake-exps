@@ -22,7 +22,7 @@ class BabySystem(LeafSystem):
                                      self.CalcOutput)
 
     def CalcOutput(self, context, output):
-        print(output)
+        # print(output)
         output.SetFromVector(np.array([0.1]))
 
 
@@ -35,16 +35,22 @@ builder.Connect(controller.get_output_port(), integrator.get_input_port())
 
 diagram = builder.Build()
 context = diagram.CreateDefaultContext()
-print(context)
-
 
 simulator = Simulator(diagram)
+# integrator.GetMyContextFromRoot(simulator.get_mutable_context()).get_mutable_continuous_state_vector().SetFromVector(np.array([2.3]))
 
-integrator.GetMyContextFromRoot(simulator.get_mutable_context()).get_mutable_continuous_state_vector().SetFromVector(np.array([1.0]))
-
+g = Source(diagram.GetGraphvizString())
+g.view()
+# print(context)
+int_context = integrator.GetMyContextFromRoot(simulator.get_mutable_context())
+print(int_context)
 
 simulator.Initialize()
-# simulator.set_target_realtime_rate(1.0)
-simulator.AdvanceTo(2.0)
 
-print(context)
+# simulator.set_target_realtime_rate(1.0)
+simulator.AdvanceTo(5.0)
+
+print(int_context)
+print("Default context?: ", context)
+
+# print(context)
